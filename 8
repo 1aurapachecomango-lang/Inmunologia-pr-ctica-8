@@ -1,0 +1,391 @@
+Aquí tienes un documento HTML que integra la información del algoritmo diagnóstico de VIH en México y los fundamentos técnicos de las pruebas, presentado en una tabla con los nombres del equipo solicitado.
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Algoritmo Diagnóstico de VIH en México | Guía Eficiente para Médicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #e9f0f5 0%, #d9e2ec 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.92);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+            overflow: hidden;
+            backdrop-filter: blur(0px);
+            transition: all 0.2s;
+        }
+
+        /* encabezado institucional */
+        .header-clinico {
+            background: #003b5c;
+            padding: 1.5rem 2rem;
+            color: white;
+            border-bottom: 5px solid #00a1b0;
+        }
+
+        .header-clinico h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header-clinico h1 small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: #1e5a7a;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0;
+        }
+
+        .header-clinico p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 0.5rem;
+        }
+
+        .equipo-tag {
+            background: #0a4c6e;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            margin-top: 1rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .equipo-tag span {
+            color: #ffdfa5;
+        }
+
+        .equipo-tag strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* contenido principal */
+        .contenido-algoritmo {
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        /* diagrama simplificado en flex / grid */
+        .algoritmo-visual {
+            background: #fefefe;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #cbdbe2;
+        }
+
+        .algoritmo-visual h2 {
+            font-size: 1.5rem;
+            border-left: 6px solid #c8102e;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            color: #003b5c;
+        }
+
+        .flujo-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .fase-card {
+            flex: 1;
+            min-width: 260px;
+            background: #ffffff;
+            border-radius: 1.2rem;
+            border-top: 5px solid #00a1b0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+            padding: 1.2rem;
+            transition: transform 0.1s;
+        }
+
+        .fase-card h3 {
+            background: #ecf7fa;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            color: #00657a;
+            margin-bottom: 1rem;
+        }
+
+        .paso {
+            margin: 0.7rem 0;
+            padding-left: 0.5rem;
+            border-left: 3px solid #c8102e;
+        }
+
+        .nota-ventana {
+            background: #fff7e5;
+            border-left: 4px solid #e8a600;
+            padding: 0.7rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .tiempos-comp {
+            margin-top: 1.2rem;
+            background: #f4f9fe;
+            border-radius: 1rem;
+            padding: 0.8rem;
+        }
+
+        .grid-tiempos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .item-tiempo {
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* tabla principal estilo profesional */
+        .tabla-diagnostico {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background-color: white;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 1.8rem 0;
+        }
+
+        .tabla-diagnostico th {
+            background-color: #003b5c;
+            color: white;
+            font-weight: 600;
+            padding: 14px 12px;
+            font-size: 0.95rem;
+            text-align: center;
+            border-right: 1px solid #2b5c7a;
+        }
+
+        .tabla-diagnostico td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 10px;
+            vertical-align: top;
+            background-color: #ffffff;
+        }
+
+        .tabla-diagnostico tr:nth-child(even) td {
+            background-color: #fafcff;
+        }
+
+        .badge-prueba {
+            background: #c8102e20;
+            color: #a00f2d;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.75rem;
+        }
+
+        .table-title {
+            font-weight: 700;
+            background: #eef2f7;
+        }
+
+        .footer-note {
+            background: #eef3fc;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            border-left: 5px solid #c8102e;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                padding: 1rem;
+            }
+            .contenido-algoritmo {
+                padding: 1rem;
+            }
+            .tabla-diagnostico th, .tabla-diagnostico td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #ccc, transparent);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-clinico">
+        <h1>
+            🧬 Diagnóstico Eficiente de VIH en México 
+            <small>Algoritmo basado en lineamientos OMS/CDC / CENSIDA</small>
+        </h1>
+        <p>Guía médica para el tamizaje, confirmación y resolución de casos · Enfoque en ventana inmunológica y pruebas de 4ª generación</p>
+        <div class="equipo-tag">
+            <span>📋 Equipo de trabajo:</span>
+            <strong>1.Abril Marquez</strong> · 
+            <strong>2.Ximena Almaguer</strong> · 
+            <strong>3.Diana Pacheco</strong> · 
+            <span>Grupo: 10</span>
+        </div>
+    </div>
+
+    <div class="contenido-algoritmo">
+        <!-- Diagrama visual resumido del algoritmo -->
+        <div class="algoritmo-visual">
+            <h2>📊 Flujo diagnóstico rápido (Tamizaje → Confirmación)</h2>
+            <div class="flujo-flex">
+                <div class="fase-card">
+                    <h3>🔍 FASE 1 · DETECCIÓN INICIAL</h3>
+                    <div class="paso"><strong>🧪 Sospecha clínica o tamizaje de rutina</strong><br> Conductas de riesgo, síndrome retroviral agudo, o cribado voluntario.</div>
+                    <div class="paso"><strong>✅ ELISA 4ta Gen (p24 + Ac IgM/IgG)</strong><br> Prueba inicial de alta sensibilidad. Detecta antígeno p24 desde días 15-20 postinfección.</div>
+                    <div class="nota-ventana">⚠️ <strong>Período de ventana:</strong> Si hay sospecha reciente (< 3 semanas) y resultado No Reactivo, considerar repetir a los 30 días.</div>
+                </div>
+                <div class="fase-card">
+                    <h3>⚕️ FASE 2 · CONFIRMACIÓN</h3>
+                    <div class="paso"><strong>📌 Resultado Reactivo en tamizaje</strong> → Confirmación obligatoria con <strong>Western Blot (WB)</strong> o <strong>Inmunoensayo diferenciador (VIH-1/VIH-2)</strong> según disponibilidad.</div>
+                    <div class="paso"><strong>🧬 Casos Discordantes:</strong> ELISA (+) / WB indeterminado o negativo → realizar <strong>Carga Viral (PCR)</strong> cuantitativa.</div>
+                    <div class="paso"><strong>📈 Confirmado:</strong> Clasificación clínica y vinculación inmediata a TAR (tratamiento antirretroviral).</div>
+                </div>
+                <div class="fase-card">
+                    <h3>⏱️ PRUEBAS RÁPIDAS & POINT OF CARE</h3>
+                    <div class="paso">✔️ Inmunocromatografía (sangre, saliva) – resultado en 15-30 min.<br> ✔️ Útiles en atención primaria, pero <strong>no definitivas</strong>: ELISA reactivo debe confirmarse.</div>
+                    <div class="tiempos-comp">
+                        <strong>📅 Comparativa de tiempos de detección:</strong>
+                        <div class="grid-tiempos">
+                            <div class="item-tiempo"><span style="font-weight:700;">🧬 Carga viral (PCR)</span><br>10–12 días</div>
+                            <div class="item-tiempo"><span style="font-weight:700;">🧫 ELISA 4ta Gen</span><br>15–20 días (Ag p24)</div>
+                            <div class="item-tiempo"><span style="font-weight:700;">📊 Prueba Rápida (3ra Gen)</span><br>3–6 semanas (Ac)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note" style="margin-top: 8px; background:#eef2f9;">
+                💡 <strong>Recomendación eficiente:</strong> Emplear inicialmente ELISA de 4ª generación (detección dual antígeno/anticuerpo) reduce el período ventana a ~15 días. Los resultados Reactivos deben confirmarse con WB o prueba diferenciadora. En discordancia (Western blot negativo/indeterminado pero ELISA positivo), solicitar carga viral por PCR. SiemBRar consentimiento informado y consejería post-prueba.
+            </div>
+        </div>
+
+        <!-- TABLA PRINCIPAL: RESUMEN COMPLETO DE PRUEBAS, VENTANA Y PROTOCOLO EFICIENTE -->
+        <h2 style="margin: 1rem 0 0.5rem 0; color:#003b5c;">📋 Diagnóstico de VIH en México: Tabla integrada de métodos, tiempos y algoritmo eficiente</h2>
+        <table class="tabla-diagnostico">
+            <thead>
+                <tr><th>Prueba / Método</th><th>Tipo / Generación</th><th>Ventana de detección (días aprox)</th><th>Interpretación y acción en algoritmo eficiente</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>🔬 ELISA 4ta Generación</strong> (Antígeno p24 + anticuerpos IgM/IgG)</td>
+                    <td><span class="badge-prueba">Tamizaje inicial preferente</span></td>
+                    <td>15 a 20 días (p24 detectable temprano)</td>
+                    <td><strong>Prueba de elección</strong> en México por lineamientos OMS/CDC. Detecta infección aguda. <br>✅ Reactivo → enviar a confirmación. ❌ No reactivo → descartar (salvo periodo ventana temprano).</td>
+                </tr>
+                <tr>
+                    <td><strong>🧪 Prueba Rápida (3ra Gen)</strong> (anticuerpos IgG/IgM)</td>
+                    <td><span class="badge-prueba">Tamizaje / point of care</span></td>
+                    <td>3 a 6 semanas (seroconversión)</td>
+                    <td>Resultado en 15-30 min. Útil en campañas y primer contacto, pero <strong>menor sensibilidad precoz</strong>. Si es reactiva se requiere ELISA 4G o Western Blot para confirmación. No concluyente por sí sola.</td>
+                </tr>
+                <tr>
+                    <td><strong>📈 Carga Viral (PCR - RNA cuantitativa)</strong></td>
+                    <td><span class="badge-prueba">Resolución de discordantes / Aguda</span></td>
+                    <td>10 a 12 días (detecta RNA viral)</td>
+                    <td><strong>Gold standard en ventana temprana o discordancia</strong> (ELISA reactivo + WB indeterminado). También se usa para monitoreo. Confirmación indirecta de infección activa.</td>
+                </tr>
+                <tr>
+                    <td><strong>🧬 Western Blot (WB) / Inmunoensayo diferenciador</strong></td>
+                    <td><span class="badge-prueba">Confirmación clásica</span></td>
+                    <td>Reconoce bandas específicas (p24, gp41, gp120)</td>
+                    <td>Confirmatorio para ELISA reactivo. Detecta anticuerpos contra proteínas virales. En México aún usado, aunque OMS recomienda pruebas alternativas rápidas en cascada. Resultado positivo → diagnóstico confirmado; indeterminado → PCR.</td>
+                </tr>
+                <tr>
+                    <td><strong>🩸 Pruebas Rápidas Combinación (4ta Gen rápida)</strong></td>
+                    <td><span class="badge-prueba">Emergentes en POCT</span></td>
+                    <td>Similar a ELISA 4G (~18 días)</td>
+                    <td>Algunos dispositivos detectan p24 + Ac. Mejoran rendimiento en sitios de escasos recursos. Sin embargo, en México se prefiere ELISA 4G de laboratorio para tamizaje sistemático.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TABLA ESPECÍFICA: ALGORITMO PASO A PASO EFICIENTE (NOMENCLATURA MEXICO) -->
+        <h2 style="margin: 1.8rem 0 0.8rem 0; color:#003b5c;">🩺 Algoritmo eficiente para el diagnóstico de VIH en México</h2>
+        <table class="tabla-diagnostico">
+            <thead><tr><th width="10%">Fase</th><th width="30%">Acción / Prueba</th><th width="60%">Interpretación clínica y decisiones basadas en evidencia</th></tr></thead>
+            <tbody>
+                <tr><td style="background:#ecf9ff; font-weight:700;">1. Tamizaje</td><td>ELISA de 4ª generación (o prueba rápida de alta sensibilidad si no hay acceso a ELISA).<br><span style="font-size:0.75rem;">Recomendado por CENSIDA</span></td><td><strong>Resultado NO REACTIVO:</strong> Significa ausencia de infección (considerar periodo ventana si exposición < 15 días). Se sugiere repetir a las 3-4 semanas en caso de alto riesgo.<br><strong>Resultado REACTIVO:</strong> Se procede a la fase de confirmación.</td></tr>
+                <tr><td style="background:#ecf9ff; font-weight:700;">2. Confirmación</td><td><strong>Western Blot</strong> o <strong>inmunoensayo lineal diferenciador VIH-1/VIH-2</strong> (según disponibilidad institucional).</td><td>✔️ <strong>Western Blot positivo:</strong> Diagnóstico confirmado de VIH. Clasificar fase clínica y ligar a tratamiento antirretroviral.<br>❌ <strong>Western Blot negativo:</strong> Posible reactividad inespecífica → si ELISA reactivo y WB negativo y baja sospecha clínica, repetir ELISA en 2-4 semanas.<br>⚠️ <strong>Indeterminado:</strong> Pasar a fase resolutiva con carga viral.</td></tr>
+                <tr><td style="background:#ecf9ff; font-weight:700;">3. Resolución de Discordantes<br>o Indeterminados</td><td><strong>Carga Viral por PCR (cuantitativa)</strong> – detecta ARN del VIH.</td><td><strong>Si Carga Viral detectable (> copias/mL):</strong> Infección confirmada (especial en ventana serológica).<br><strong>Si CV indetectable:</strong> se descarta infección aguda; probable resultado falso positivo del ELISA. Repetir serología en 1 mes para resolver.</td></tr>
+                <tr><td style="background:#ecf9ff; font-weight:700;">4. Diagnóstico definitivo<br>y Vinculación</td><td>Confirmado el caso → estadificación clínica (CDC/CENSIDA), conteo de CD4, genotipificación si necesario. <br>Inicio inmediato de TAR (Tratamiento Antirretroviral).</td><td>Referir a servicios especializados de VIH, consejería post prueba, notificación confidencial. La vinculación temprana mejora pronóstico y reduce transmisión (indetectable = intransmisible).</td></tr>
+                <tr><td style="background:#ecf9ff; font-weight:700;">➕ Consideraciones éticas</td><td>Consentimiento informado, confidencialidad absoluta, consejería pre y post prueba.</td><td>El diagnóstico de VIH implica alto impacto emocional. Entregar resultados con empatía, respeto y ofrecer seguimiento psicológico. Según guías UCAM y CDC.</td></tr>
+            </tbody>
+        </table>
+
+        <!-- información sobre diagnóstico molecular y autoinmunidad breve, integrando fundamentos del PDF -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0 1rem 0;">
+            <div style="flex: 1; background: #f8f5f0; border-radius: 24px; padding: 1.2rem;">
+                <h3 style="color:#c8102e;">🧠 Fundamentos inmunológicos</h3>
+                <p style="font-size:0.9rem;">La detección de anticuerpos (IgM/IgG) permite diferenciar infección aguda de crónica. La <strong>seroconversión</strong> ocurre típicamente entre 2 y 4 semanas post exposición. Las pruebas de cuarta generación (detección de antígeno p24 + Ac) acortan la ventana a 15 días, esencial para el diagnóstico temprano. El <strong>Western Blot</strong> sigue siendo prueba confirmatoria en varias instituciones mexicanas, pero ante la recomendación OMS/CDC, se prefiere algoritmos secuenciales rápidos con pruebas de alta especificidad.</p>
+            </div>
+            <div style="flex: 1; background: #eef3fa; border-radius: 24px; padding: 1.2rem;">
+                <h3 style="color:#003b5c;">📌 Resumen ejecutivo para equipo médico</h3>
+                <ul style="margin-left: 1.2rem; font-size:0.9rem;">
+                    <li><strong>Tamizaje eficiente:</strong> ELISA 4ta Gen es estándar en México (sensibilidad >99%).</li>
+                    <li><strong>Confirmación rápida:</strong> Western Blot o inmunoensayo diferenciador; si no hay disponibilidad usar segunda prueba rápida diferente según algoritmo OMS.</li>
+                    <li><strong>Discordancia más frecuente:</strong> ELISA reactivo + WB indeterminado → carga viral esencial.</li>
+                    <li><strong>Pruebas rápidas (point of care):</strong> útiles en poblaciones vulnerables, pero siempre validar con ELISA.</li>
+                    <li><strong>Resultado negativo temprano</strong> no excluye infección reciente: repetir tras ventana de 4-6 semanas si exposición de alto riesgo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            🏥 <strong>Referencias basadas en:</strong> "Algoritmo Diagnóstico de VIH México" (CENSIDA/SSA), Guías OMS 2019-2024, CDC (abandono del Western blot como estándar único), y fundamentos de ELISA/Western Blot de la Práctica 8 (Detección de anticuerpos en diagnóstico médico). Se enfatiza la importancia de la carga viral para discordancia y detección temprana. 
+            <hr style="margin:0.6rem 0;">
+            📍 Elaborado por: Abril Marquez, Ximena Almaguer, Diana Pacheco — Grupo 10. Este material apoya la toma de decisiones clínicas con base en el algoritmo nacional eficiente y actualizado.
+        </div>
+    </div>
+</div>
+</body>
+</html>
+```
