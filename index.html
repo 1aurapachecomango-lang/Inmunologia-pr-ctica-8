@@ -1,95 +1,126 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Diagnóstico de VIH 💗</title>
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background: linear-gradient(#ffe6f0,#e6f0ff);
-  text-align:center;
-}
-h1{
-  color:#ff4da6;
-}
-.box{
-  background:white;
-  border-radius:20px;
-  padding:15px;
-  margin:10px auto;
-  width:300px;
-  box-shadow:0px 4px 10px rgba(0,0,0,0.1);
-}
-.arrow{
-  font-size:30px;
-}
-.yes{ color:green; font-weight:bold;}
-.no{ color:red; font-weight:bold;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmo Interactivo de Diagnóstico VIH</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 { color: #2c3e50; }
+        #diagram-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px;
+            overflow: auto;
+        }
+        .info-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4fd;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 870px;
+            display: none; /* Se muestra al hacer clic */
+        }
+        .nodeRect { cursor: pointer; transition: 0.3s; }
+        .nodeRect:hover { filter: brightness(90%); }
+    </style>
 </head>
-
 <body>
 
-<h1>💉 Algoritmo VIH (México) 💗</h1>
+    <h1>Protocolo Diagnóstico VIH (Interactivo)</h1>
+    <p>Haz clic en los cuadros para ver detalles técnicos de cada etapa.</p>
 
-<div class="box">👩‍⚕️ Sospecha clínica o tamizaje</div>
-<div class="arrow">⬇️</div>
+    <div id="diagram-container">
+        <pre class="mermaid">
+        graph TD
+            %% Definición del flujo
+            START(PRD - Prueba Rápida) --> NEG_1[Negativo]
+            START --> POS_1[Positivo]
 
-<div class="box">🧪 Prueba rápida / ELISA 4ª gen</div>
-<div class="arrow">⬇️</div>
+            NEG_1 --> SOS_1{¿Sospecha Clínica?}
+            SOS_1 -- No --> OBS[Seguir Observación Médica]
+            SOS_1 -- Sí --> ELIS4[ELISA 4ta Gen Ag/Ac]
 
-<div class="box">
-¿Resultado reactivo?<br>
-<span class="yes">✔ Sí</span> / <span class="no">✘ No</span>
-</div>
+            POS_1 --> ELIS4
 
-<div class="arrow">⬇️</div>
+            ELIS4 --> ELI_POS[Positivo]
+            ELIS4 --> ELI_NEG[Negativo]
 
-<div class="box">
-✘ NO → ❌ VIH descartado<br>
-(Si hay riesgo reciente → repetir)
-</div>
+            ELI_NEG --> SOS_ALTA{Sospecha Alta}
+            SOS_ALTA -- Sí --> RTPCR[RT-PCR ARN Viral]
+            SOS_ALTA -- No --> REP_ELIS[Repetir en 2-4 semanas]
 
-<div class="arrow">⬇️</div>
+            ELI_POS --> DIFF[Inmunoensayo Diferencial VIH-1/VIH-2]
+            
+            DIFF --> DIFF_POS[Positivo]
+            DIFF --> DIFF_NEG[Negativo/Indeterminado]
 
-<div class="box">
-✔ SÍ → 🔬 Prueba confirmatoria<br>
-(VIH-1/VIH-2)
-</div>
+            DIFF_POS --> CONFIRM[DIAGNÓSTICO CONFIRMATORIO]
+            
+            DIFF_NEG --> SOS_2{Sospecha Clínica}
+            SOS_2 -- Sí --> RTPCR
+            SOS_2 -- No --> OBS
 
-<div class="arrow">⬇️</div>
+            RTPCR --> PCR_POS[Carga Viral Detectable]
+            RTPCR --> PCR_NEG[No Detectable]
 
-<div class="box">
-¿Confirmación positiva?<br>
-<span class="yes">✔ Sí</span> / <span class="no">✘ No</span>
-</div>
+            PCR_POS --> CONFIRM
+            PCR_NEG --> REVAL[Revaluar Ventana Inmunológica]
 
-<div class="arrow">⬇️</div>
+            %% Estilos
+            classDef principal fill:#d1e7ff,stroke:#3498db,stroke-width:2px;
+            classDef positivo fill:#f8d7da,stroke:#dc3545,stroke-width:2px;
+            classDef pcr fill:#00f2ff,stroke:#008c95,stroke-width:3px;
+            classDef confirm fill:#d4edda,stroke:#28a745,stroke-width:2px;
 
-<div class="box">
-✔ SÍ → ✅ Diagnóstico VIH confirmado
-</div>
+            class START,ELIS4,DIFF principal;
+            class POS_1,ELI_POS,DIFF_POS,PCR_POS positivo;
+            class RTPCR pcr;
+            class CONFIRM confirm;
 
-<div class="arrow">⬇️</div>
+            %% Eventos de clic
+            click START call showDetails("PRD: Prueba rápida de tamizaje inicial. Sensible pero requiere confirmación.")
+            click ELIS4 call showDetails("ELISA 4ta Generación: Detecta anticuerpos y el antígeno p24 simultáneamente.")
+            click RTPCR call showDetails("RT-PCR: Prueba de carga viral. Esencial en sospecha alta para detectar el virus antes de la seroconversión (periodo de ventana).")
+            click CONFIRM call showDetails("Diagnóstico Confirmado: Proceder a vinculación con servicios de salud y tratamiento ARV.")
+        </pre>
+    </div>
 
-<div class="box">
-✘ NO → ⚠️ Resultado indeterminado<br>
-→ PCR (carga viral)
-</div>
+    <div id="info-panel" class="info-panel">
+        <strong>Detalle del Nodo:</strong> <span id="info-text"></span>
+    </div>
 
+    <script>
+        // Inicializar Mermaid
+        mermaid.initialize({ startOnLoad: true, securityLevel: 'loose' });
+
+        // Función que se dispara al hacer clic en los nodos
+        function showDetails(text) {
+            const panel = document.getElementById('info-panel');
+            const infoText = document.getElementById('info-text');
+            infoText.innerText = text;
+            panel.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
   <div class="equipo">
 👩‍⚕️ Equipo:<br>
 Diana Pacheco<br>
 Ximena Almaguer<br>
-Abril Márquez
-  </div>
-
-<div class="arrow">⬇️</div>
-
-<div class="box">
-📊 PCR positiva → VIH agudo<br>
-📊 PCR negativa → descartar
-</div>
-
-</body>
-</html>
+Abril Márquez<br>
